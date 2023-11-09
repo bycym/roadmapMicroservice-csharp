@@ -1,0 +1,6 @@
+@roadmapMicroservice_HostAddress = http://localhost:5142
+
+GET {{roadmapMicroservice_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

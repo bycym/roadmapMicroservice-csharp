@@ -1,0 +1,16 @@
+{
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#22a068",
+      "titleBar.activeBackground": "#1ea396",
+      "titleBar.activeForeground": "#FEFBFB"
+    },
+    // Set the default
+  "editor.formatOnSave": true,
+  // Enable per-language
+  "[*]": {
+    "editor.tabSize": 2,
+  },
+
+  "editor.autoIndent": "full",
+  "editor.detectIndentation": false
+}

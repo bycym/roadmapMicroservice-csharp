@@ -1,0 +1,48 @@
+version: '3.0'
+
+services:
+  profile-backend:
+    depends_on:
+      - db
+    image: Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5233:5233"
+  postgres-db:
+    hostname: 'profile_service_db'
+    networks:
+      - profile_network
+    image: postgres
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 54329:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: main
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U user -d main" ]
+      interval: 1s
+      timeout: 5s
+      retries: 20
+  redis:
+    hostname: 'profile_service_redis'
+    image: redis
+    ports:
+      - 63788:6379
+    networks:
+      - profile_network
+
+volumes:
+  node_modules:
+  db_data:
+    driver: local
+
+networks:
+  profile_network:
+    name: 'profile_network'
+    external: true
